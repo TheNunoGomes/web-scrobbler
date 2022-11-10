@@ -48,16 +48,15 @@ define(() => {
 	 * @return {Number} Seconds to scrobble
 	 */
 	function getSecondsToScrobble(duration, percent) {
-		if (isDurationInvalid(duration)) {
-			return DEFAULT_SCROBBLE_TIME;
-		}
-
-		if (duration < MIN_TRACK_DURATION) {
-			return -1;
-		}
-
-		const scrobbleTime = Math.round(duration * percent / 100);
-		return Math.min(scrobbleTime, MAX_SCROBBLE_TIME);
+		return 1;
+		// if (isDurationInvalid(duration)) {
+		// 	return DEFAULT_SCROBBLE_TIME;
+		// }
+		// if (duration < MIN_TRACK_DURATION) {
+		// 	return -1;
+		// }
+		// const scrobbleTime = Math.round((duration * percent) / 100);
+		// return Math.min(scrobbleTime, MAX_SCROBBLE_TIME);
 	}
 
 	/**
@@ -99,8 +98,12 @@ define(() => {
 	 * @return {Boolean} Check result
 	 */
 	function isDurationInvalid(duration) {
-		return !duration || typeof duration !== 'number' ||
-			isNaN(duration) || !isFinite(duration);
+		return (
+			!duration ||
+			typeof duration !== 'number' ||
+			isNaN(duration) ||
+			!isFinite(duration)
+		);
 	}
 
 	/**
@@ -126,7 +129,6 @@ define(() => {
 			);
 		});
 	}
-
 
 	/**
 	 * Check if an array of scrobbler results contains at least one result
